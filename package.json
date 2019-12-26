@@ -1,0 +1,7 @@
+{
+  "name": "untitled8",
+  "version": "1.0.0",
+  "dependencies": {
+    "wordpress": "^1.4.1"
+  }
+}
