@@ -22,7 +22,8 @@ app.use((req,res,next)=>{
         ip = ip.split(',')[0];
     }
     console.log(ip);
-})
+    next();
+});
 
 
 
