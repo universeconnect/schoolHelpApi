@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 let router = require("./router");
 router(app);
 
+
 //设置端口
 const {HTTP_PORT} = require('./config')
 app.listen(HTTP_PORT, () => console.log('Example app listening on port 3000!'))
