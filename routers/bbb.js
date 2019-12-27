@@ -1,7 +1,11 @@
-module.exports = function(req,res,next,connection) {
-    res.send({"info":"results"});
-};
-
-
-
-
+module.exports = function(req,res,next){
+    const connection = require('../lib/database')
+    connection.query('SELECT * FROM `user`;', function (error, results, fields) {
+        if (error) {
+            console.error(error)
+        } else {
+            console.log(results)
+            res.send({"info":results})//返回数据给前端
+        }
+    });
+}
