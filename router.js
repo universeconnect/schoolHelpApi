@@ -19,4 +19,7 @@ module.exports = function (app) {
     app.post("/bbb",(req,res,next)=>{
         require("./routers/bbb")(req,res,next)//导入模块时顺便执行了，因为该模块返回的是一个函数。
     });
+
+
+
 };
