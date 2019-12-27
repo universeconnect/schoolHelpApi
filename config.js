@@ -3,7 +3,7 @@ module.exports = {
     DB_HOST: 'localhost',
     DB_PORT: 3306,
     DB_USER: 'root',
-    DB_PASS: '168168',
+    DB_PASS: '000000',
     DB_NAME: 'school_help',
 
     // HTTP端口
