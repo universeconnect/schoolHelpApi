@@ -17,12 +17,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use((req,res,next)=>{
-    let ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddres || req.socket.remoteAddress || '';
+    let ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddres || req.socket.remoteAddress ||  req.socket.remoteFamily || '';
     if(ip.split(',').length>0){
         ip = ip.split(',')[0];
     }
-    console.log(ip);
-    console.log(req);
+    let port =  req.connection.remoteProt || req.socket.remoteProt || '';
+    console.log("收到请求：ip："+ip+"     端口："+port);
     next();
 });
 
