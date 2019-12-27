@@ -20,7 +20,6 @@ module.exports = function(req,res,next) {//该参数不可变，所有接口代�
         }else {
             res.send({"msg":"sql语句执行正确","info":results,get,post})//这里返回get和post参数是用于测试
         }
-
     });
 
 
