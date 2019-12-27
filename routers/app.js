@@ -8,6 +8,6 @@ module.exports = function(req,res,next){
             res.send({"info":results})//返回数据给前端
         }
     });
-}
+};
 
 
