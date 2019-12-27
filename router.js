@@ -9,6 +9,7 @@ module.exports = function (app) {
     // 下面是俩例子
 
 
+
     //get请求
     app.get("/app",(req,res,next)=>{
         require("./routers/app")(req,res,next)//导入模块时顺便执行了，因为该模块返回的是一个函数。
