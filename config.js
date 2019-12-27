@@ -4,7 +4,7 @@ module.exports = {
     DB_PORT: 3306,
     DB_USER: 'root',
     DB_PASS: '000000',
-    DB_NAME: 'school_help',
+    DB_NAME: 'ssm',
 
     // HTTP端口
     HTTP_PORT: 3000
