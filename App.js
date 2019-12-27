@@ -16,6 +16,16 @@ connection.connect();//连接数据库*/
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use((req,res,next)=>{
+    let ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddres || req.socket.remoteAddress || '';
+    if(ip.split(',').length>0){
+        ip = ip.split(',')[0];
+    }
+    console.log(ip);
+})
+
+
+
 let router = require("./router");
 router(app);
 
