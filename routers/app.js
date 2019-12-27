@@ -13,7 +13,7 @@ module.exports = function(req,res,next){
     c
 >>>>>>> Stashed changes
     });
-}
+};
 
 
 
