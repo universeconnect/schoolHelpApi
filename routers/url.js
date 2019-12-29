@@ -1,27 +1,35 @@
-module.exports = function(req,res,next) {//该参数不可变，所有接口代码文件都所有这个方式。
-    const connection = require('../lib/database');
-    //以下是代码区域
-    // 如何获取前端传入的参数？
-    //获取get参数使用res.query，该值是一个对象，里面包含所有的get参数；
-    var get = res.query;
-    //获取post参数使用req.body，该值是一个对象，里面包含所有的post参数；
-    var post = req.body;
-    // 如何操作数据库？
-    /*sql语句的讲究：
-    1.sql语句必须是一个字符串（这没啥好的），当sql语句中有需要是否变量的时候直接使用+号拼串即可
-    2.正常sql语句中的字符串使用``而不是""和''*/
-    connection.query('SELECT * FROM `information_help`;', function (error, results, fields) {//执行sql语句
-        // error:只有该sql语句执行失败时才不为空，包含的是该sql语句执行的错误信息
-        //results：sql语句执行的结果，当为查询语句时是查询到的数据
-        //fields：当前表的信息
-        if(error){
-            res.send({"msg":"sql语句执行错误","info":null,error})//返回数据给前端,error仅仅是测试时使用。
-            // res.send（）只会执行一次，执行后将不在执行该中间件。如同函数的return
-        }else {
-            res.send({"msg":"sql语句执行正确","info":results,get,post})//这里返回get和post参数是用于测试
+const sqlApi = require("../lib/sqlApi");//引入封装的sqlAPI（该api在sql语句执行错误时会自动存放错误日志）
+const pool = require('../lib/database');//引入数据库连接池
+module.exports = function(req,res,next){
+    pool.getConnection(function(err) {//连接数据库
+        if (err){//连接失败
+            res.send({
+                "msg":"database connect error",//返回的状态信息
+                "data":[],//返回的数据为空数组
+            });
+        }else {//连接成功
+            sqlApi(req,'SELECT information_type FROM `information_help`')//使用封装的sqlAPI，第一个参数是req，第二个参数是sql语句
+            //当sql语句正确执行会进入.then()，传入一个函数，该函数的第一个参数是sql语句的执行结果。
+            //当sql语句执行失败或.then中出现错误时都会进入.catch(),传入一个函数，该函数的第一个参数是错误信息。
+            .then(function(data){//使用.then表示sql语句正确执行
+                //继续执行下一个sql语句
+                return sqlApi(req,'SELECT * FROM `type` where type_id=' + data[0].information_type + ';');//继续执行下一个sql语句
+            })
+            .then(function (data) {
+                res.send({//res.send()只能执行一次
+                    "msg":"ok",
+                    "data":data,//data是sql语句执行结果，最外层是一个数组
+                });
+            })
+            .catch(function (error) {//sql语句执行失败或者出现错误
+                res.send({
+                    "msg":"sql execute error",
+                    "data":[],//同样返回一个空数组
+                });
+            })
         }
-    });
-
-
-
+    })
 };
+
+
+

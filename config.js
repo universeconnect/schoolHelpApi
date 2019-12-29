@@ -1,6 +1,6 @@
 module.exports = {
     // 数据库配置
-    DB_HOST: 'localhost',
+    DB_HOST: '49.234.9.206',
     DB_PORT: 3306,
     DB_USER: 'root',
     DB_PASS: '000000',
