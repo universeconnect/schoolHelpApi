@@ -1,5 +1,6 @@
 const sqlApi = require("../lib/sqlApi");//引入封装的sqlAPI（该api在sql语句执行错误时会自动存放错误日志）
 const pool = require('../lib/database');//引入数据库连接池
+
 module.exports = function(req,res,next){
     pool.getConnection(function(err) {//连接数据库
         if (err){//连接失败
