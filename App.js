@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require('body-parser');//引入用于获取post参数的模块
 
 let il = require("./lib/insertLog");
-
 /*引入用于获取post参数的模块
 引入用于获取post参数的模块connection = mysql.createConnection({//创建连接
     host     : 'localhost', //主机地址
