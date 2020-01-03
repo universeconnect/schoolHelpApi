@@ -23,6 +23,9 @@ app.use((req,res,next)=>{
 });
 
 
+//开放public目录，该目录用于存放静态资源
+app.use('/public/',express.static(__dirname + '/public/'));
+
 
 let router = require("./router");
 router(app);
