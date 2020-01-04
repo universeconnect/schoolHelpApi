@@ -12,6 +12,9 @@ module.exports = function (app) {
     app.post("/number4",(req,res,next)=>{
         require("./routers/number4")(req,res,next)
     });
+    app.post("/number5",(req,res,next)=>{
+        require("./routers/number5")(req,res,next)
+    });
 
 
 
