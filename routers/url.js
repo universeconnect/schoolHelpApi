@@ -15,8 +15,10 @@ module.exports = function(req,res,next){
             .then(function (data) {
                 res.send({//res.send()只能执行一次
                     "msg":"ok",
-                    "data":data,//data是sql语句执行结果，最外层是一个数组
+                    "data":data,
+                    //data是sql语句执行结果，最外层是一个数组
                 });
+                console.log(data);
             })
             .catch(function (error) {//sql语句执行失败或者出现错误
                 res.send({
@@ -24,6 +26,7 @@ module.exports = function(req,res,next){
                     "data":[],//同样返回一个空数组
                 });
             });
+
             connection.release();//释放连接
         }
     })
