@@ -1,33 +1,40 @@
-const sqlApi = require("../lib/sqlApi");//引入封装的sqlAPI（该api在sql语句执行错误时会自动存放错误日志）
-const pool = require('../lib/database');//引入数据库连接池
+const sqlApi = require("../lib/sqlApi");
+const pool = require('../lib/database');
 module.exports = function(req,res,next){
-    pool.getConnection(function(err,connection) {//连接数据库
-        if (err) throw err; // not connected!
-        if (err){//连接失败
+    pool.getConnection(function(err,connection) {
+        if (err){
             res.send({
-                "msg":"database connect error",//返回的状态信息
-                "data":[],//返回的数据为空数组
+                "msg":"database connect error",
+                "data":[],
             });
-        }else {//连接成功
-            console.log(req.body);
-            let sql = 'select 1'
+        }else {
+            console.log(req.body);//输出post数据（用于调试，上传时请删除）
+            console.log(res.query);//输出get数据（用于调试，上传时请删除）
+            let sql = `INSERT INTO hobby (hobby_id,hobby_name) VALUES (0,"${req.body.hobby_name}");`;//因为hobby_name字段是varchar类型所以${}两边有"包裹。
+            console.log(sql);//输出sql数据,可以查看sql语句是否正确（用于调试，上传时请删除）
 
-            sqlApi(req,connection,sql)//使用封装的sqlAPI，第三个参数是sql语句
-            //当sql语句正确执行会进入.then()，传入一个函数，该函数的第一个参数是sql语句的执行结果。
-            //当sql语句执行失败或.then中出现错误时都会进入.catch(),传入一个函数，该函数的第一个参数是错误信息
+            sqlApi(req,connection,sql)
             .then(function (data) {
-                res.send({//res.send()只能执行一次
-                    "msg":"ok",
-                    "data":data,//data是sql语句执行结果，最外层是一个数组
-                });
+                if(data){
+                    res.send({
+                        "msg":"ok",
+                        "data":[],
+                    });
+                }else {
+                    res.send({
+                        "msg":"fail",
+                        "data":[],
+                    });
+                }
             })
-            .catch(function (error) {//sql语句执行失败或者出现错误
+            .catch(function (error) {
+                console.log(error);//输出sql语句执行宠物的错误对象，可以知道sql错在哪。
                 res.send({
                     "msg":"sql execute error",
-                    "data":[],//同样返回一个空数组
+                    "data":[],
                 });
             });
-            connection.release();//释放连接
+            connection.release();
         }
     })
 };
