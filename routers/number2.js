@@ -15,17 +15,10 @@ module.exports = function(req,res,next){
 
             sqlApi(req,connection,sql)
             .then(function (data) {
-                if(data){
                     res.send({
-                        "msg":"ok",
+                        "msg":data?"ok":"fail",//成功返回ok失败返回fail（除啦查询操作其他操作的data都是是否成功data）
                         "data":[],
                     });
-                }else {
-                    res.send({
-                        "msg":"fail",
-                        "data":[],
-                    });
-                }
             })
             .catch(function (error) {
                 console.log(error);//输出sql语句执行宠物的错误对象，可以知道sql错在哪。
