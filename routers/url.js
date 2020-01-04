@@ -9,13 +9,9 @@ module.exports = function(req,res,next){
                 "data":[],//返回的数据为空数组
             });
         }else {//连接成功
-            sqlApi(req,connection,'SELECT information_type FROM `information_help`')//使用封装的sqlAPI，第三个参数是sql语句
+            sqlApi(req,connection,'SELECT * FROM `information_help` where information_title="${req.body.information_title}";')//使用封装的sqlAPI，第三个参数是sql语句
             //当sql语句正确执行会进入.then()，传入一个函数，该函数的第一个参数是sql语句的执行结果。
-            //当sql语句执行失败或.then中出现错误时都会进入.catch(),传入一个函数，该函数的第一个参数是错误信息。
-            .then(function(data){//使用.then表示sql语句正确执行
-                //继续执行下一个sql语句
-                return sqlApi(req,connection,'SELECT * FROM `type` where type_id=' + data[0].information_type + ';');//继续执行下一个sql语句
-            })
+            //当sql语句执行失败或.then中出现错误时都会进入.catch(),传入一个函数，该函数的第一个参数是错误信息
             .then(function (data) {
                 res.send({//res.send()只能执行一次
                     "msg":"ok",
