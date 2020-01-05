@@ -8,15 +8,9 @@ module.exports = function(req,res,next){
                 "data":[],
             });
         }else {
-            console.log(req.body);//输出post数据（用于调试，上传时请删除）
-            console.log(res.query);//输出get数据（用于调试，上传时请删除）
-
             if(req.body.information_user){//判断是否接收到指定的参数
-
-                let sql = `SELECT * FROM information_help WHERE information_user=${req.body.information_user}`;//因为hobby_name字段是varchar类型所以${}两边有"包裹。
-
+                let sql = `SELECT * FROM information_help WHERE information_user=${req.body.information_user}`;
                 console.log(sql);//输出sql数据,可以查看sql语句是否正确（用于调试，上传时请删除）
-
                 sqlApi(req,connection,sql)
                     .then(function (data) {
                         res.send({
@@ -25,7 +19,6 @@ module.exports = function(req,res,next){
                         });
                     })
                     .catch(function (error) {
-                        console.log(error);//输出sql语句执行错误的错误对象，可以知道sql错在哪。
                         res.send({
                             "status_code":905,//错误状态码
                             "data":[],

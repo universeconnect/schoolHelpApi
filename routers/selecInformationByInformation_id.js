@@ -13,7 +13,7 @@ module.exports = function(req,res,next){
                 sqlApi(req,connection,sql)
                 .then(function (data) {
                     res.send({
-                        "status_code":805,//成功返回ok失败返回fail（除啦查询操作其他操作的data都是是否成功）
+                        "status_code":805,
                         "data":data
                     });
                 })

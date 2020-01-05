@@ -8,24 +8,16 @@ module.exports = function(req,res,next){
                 "data":[],
             });
         }else {
-            console.log(req.body);//输出post数据（用于调试，上传时请删除）
-            console.log(res.query);//输出get数据（用于调试，上传时请删除）
-
             if(req.body.information_id){//判断是否接收到指定的参数
-
                 let sql = `UPDATE information_help SET information_status=1 WHERE information_id=${req.body.information_id}`;
-
-                console.log(sql);//输出sql数据,可以查看sql语句是否正确（用于调试，上传时请删除）
-
                 sqlApi(req,connection,sql)
                     .then(function (data) {
                         res.send({
-                            "status_code":data?805:905,//成功返回ok失败返回fail（除啦查询操作其他操作的data都是是否成功）
+                            "status_code":data?805:905,
                             "data":[],
                         });
                     })
                     .catch(function (error) {
-                        console.log(error);//输出sql语句执行错误的错误对象，可以知道sql错在哪。
                         res.send({
                             "status_code":905,//错误状态码
                             "data":[],
