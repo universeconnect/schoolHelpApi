@@ -13,7 +13,7 @@ module.exports = function(req,res,next){
 
             if(req.body.information_user){//判断是否接收到指定的参数
 
-                let sql = `SELECT * FROM information_help where information_user=${req.body.information_user}`;//因为hobby_name字段是varchar类型所以${}两边有"包裹。
+                let sql = `SELECT * FROM information_help WHERE information_user=${req.body.information_user}`;//因为hobby_name字段是varchar类型所以${}两边有"包裹。
 
                 console.log(sql);//输出sql数据,可以查看sql语句是否正确（用于调试，上传时请删除）
 

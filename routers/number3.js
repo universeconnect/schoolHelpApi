@@ -10,7 +10,6 @@ module.exports = function(req,res,next){
         }else {
             console.log(req.body);//输出post数据（用于调试，上传时请删除）
             console.log(res.query);//输出get数据（用于调试，上传时请删除）
-
             if(req.body.information_type&&req.body.information_title&&req.body.information_content&&req.body.information_money&&req.body.information_status&&req.body.information_user&&req.body.information_place&&req.body.information_latitude&&req.body.information_longitude&&req.body.information_endmouthtime&&req.body.information_endtime&&req.body.information_phone){//判断是否接收到指定的参数
 
                 let sql = `INSERT INTO information_help (information_type,information_title,information_content,information_money,information_status,information_user,information_place,information_latitude,information_longitude,information_endmouthtime,information_endtime,information_phone,information_town) VALUES (${req.body.information_type},"${req.body.information_title}","${req.body.information_content}",${req.body.information_money},${req.body.information_status},${req.body.information_user},"${req.body.information_place}","${req.body.information_latitude}","${req.body.information_longitude}","${req.body.information_endmouthtime}","${req.body.information_endtime}","${req.body.information_phone}","${req.body.information_town}");`;//因为hobby_name字段是varchar类型所以${}两边有"包裹。

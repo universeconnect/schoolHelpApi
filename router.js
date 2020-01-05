@@ -16,6 +16,9 @@ module.exports = function (app) {
         require("./routers/number5")(req,res,next)
     });
 
+    app.post("/selecInformationByInformation_id",(req,res,next)=>{
+        require("./routers/selecInformationByInformation_id")(req,res,next)
+    });
 
 
 
