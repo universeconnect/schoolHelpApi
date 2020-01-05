@@ -11,9 +11,9 @@ module.exports = function(req,res,next){
             console.log(req.body);//输出post数据（用于调试，上传时请删除）
             console.log(res.query);//输出get数据（用于调试，上传时请删除）
 
-            if(req.body.information_type&&req.body.information_title&&req.body.information_content&&req.body.information_money&&req.body.information_status&&req.body.information_user&&req.body.information_place&&req.body.information_latitude&&req.body.information_longitude&&req.body.information_endmouthtime&&req.body.information_endtime&&req.body.information_phone&&req.body.information_town&&req.body.information_detaiLocation&&req.body.information_limitSex){//判断是否接收到指定的参数
+            if(req.body.information_id){//判断是否接收到指定的参数
 
-                let sql = `INSERT INTO information_help (information_type,information_title,information_content,information_money,information_status,information_user,information_place,information_latitude,information_longitude,information_endmouthtime,information_endtime,information_phone,information_town,information_detaiLocation,information_limitSex) VALUES (${req.body.information_type},"${req.body.information_title}","${req.body.information_content}",${req.body.information_money},${req.body.information_status},${req.body.information_user},"${req.body.information_place}","${req.body.information_latitude}","${req.body.information_longitude}","${req.body.information_endmouthtime}","${req.body.information_endtime}","${req.body.information_phone}","${req.body.information_town}""${req.body.information_detaiLocation}",${req.body.information_limitSex});`;//因为hobby_name字段是varchar类型所以${}两边有"包裹。
+                let sql = `UPDATE information_help SET information_status=1 WHERE information_id=${req.body.information_id}`;
 
                 console.log(sql);//输出sql数据,可以查看sql语句是否正确（用于调试，上传时请删除）
 
