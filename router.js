@@ -24,6 +24,9 @@ module.exports = function (app) {
     app.post("/select_userid",(req,res,next)=>{
         require("./routers/select_userid")(req,res,next)
     });
+    app.post("/cancel_Focus",(req,res,next)=>{
+        require("./routers/cancel_Focus")(req,res,next)
+    });
 
 
 
