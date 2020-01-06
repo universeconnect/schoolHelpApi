@@ -18,6 +18,12 @@ module.exports = function (app) {
     app.post("/selecInformation",(req,res,next)=>{
         require("./routers/selecInformation")(req,res,next)
     });
+    app.post("/selecInformationByInformation_id",(req,res,next)=>{
+        require("./routers/selecInformationByInformation_id")(req,res,next)
+    });
+    app.post("/select_userid",(req,res,next)=>{
+        require("./routers/select_userid")(req,res,next)
+    });
 
 
 
