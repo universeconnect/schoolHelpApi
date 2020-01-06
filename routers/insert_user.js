@@ -1,6 +1,5 @@
 const sqlApi = require("../lib/sqlApi");
 module.exports = function(req,res,next){
-
     if(req.body.user_name&&
     req.body.nickname&&
     req.body.avatarurl&&

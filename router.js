@@ -9,20 +9,14 @@ module.exports = function (app) {
     app.post("/number3",(req,res,next)=>{
         require("./routers/number3")(req,res,next)
     });
-    app.post("/number4",(req,res,next)=>{
-        require("./routers/number4")(req,res,next)
-    });
-    app.post("/number5",(req,res,next)=>{
-        require("./routers/number5")(req,res,next)
-    });
     app.post("/insert_user",(req,res,next)=>{
         require("./routers/insert_user")(req,res,next)
     });
     app.post("/update_status",(req,res,next)=>{
         require("./routers/update_status")(req,res,next)
     });
-    app.post("/selecInformationByInformation_id",(req,res,next)=>{
-        require("./routers/selecInformationByInformation_id")(req,res,next)
+    app.post("/selecInformation",(req,res,next)=>{
+        require("./routers/selecInformation")(req,res,next)
     });
 
 
