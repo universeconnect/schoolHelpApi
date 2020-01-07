@@ -6,10 +6,13 @@ module.exports = function(req,res,next){
     if(req.body.hobby_name){//判断是否接收到指定的参数
 
         let sql = `INSERT INTO hobby (hobby_id,hobby_name) VALUES (0,"${req.body.hobby_name}");`;//因为hobby_name字段是varchar类型所以${}两边有"包裹。
-
         console.log(sql);//输出sql数据,可以查看sql语句是否正确（用于调试，上传时请删除）
 
         sqlApi(req,sql)
+        .then(function (data) {
+            let sql = `INSERT INTO hobby (hobby_id,hobby_name) VALUES (0,"${req.body.hobby_name}");`;
+            return sqlApi(req,sql)
+        })
         .then(function (data) {
             res.send({
                 "status_code":data?805:905,//成功返回ok失败返回fail（除啦查询操作其他操作的data都是是否成功）

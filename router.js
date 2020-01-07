@@ -24,7 +24,12 @@ module.exports = function (app) {
     app.post("/select_userid",(req,res,next)=>{
         require("./routers/select_userid")(req,res,next)
     });
-
+    app.post("/selectFans",(req,res,next)=>{
+        require("./routers/selectFans")(req,res,next)
+    });
+    app.post("/selectFansSum",(req,res,next)=>{
+        require("./routers/selectFansSum")(req,res,next)
+    });
 
 
 
