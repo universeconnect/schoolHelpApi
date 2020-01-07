@@ -30,6 +30,9 @@ module.exports = function (app) {
     app.post("/selectFansSum",(req,res,next)=>{
         require("./routers/selectFansSum")(req,res,next)
     });
+    app.post("/cancel_Focus",(req,res,next)=>{
+        require("./routers/cancel_Focus")(req,res,next)
+    });
 
 
 
