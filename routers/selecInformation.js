@@ -10,7 +10,6 @@ module.exports = function(req,res,next){
             });
         })
         .catch(function (error) {
-            console.log(error);//输出sql语句执行错误的错误对象，可以知道sql错在哪。
             res.send({
                 "status_code":905,//错误状态码
                 "data":[],
