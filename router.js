@@ -36,6 +36,9 @@ module.exports = function (app) {
     app.post("/area",(req,res,next)=>{//获取指定type按town分组的所有需求数量和一个地址
         require("./routers/area")(req,res,next)
     });
+    app.post("/getOpenId",(req,res,next)=>{//获取openID
+        require("./routers/getOpenId")(req,res,next)
+    });
 
 
 
