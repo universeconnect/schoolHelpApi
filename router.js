@@ -42,6 +42,10 @@ module.exports = function (app) {
     app.post("/user_number",(req,res,next)=>{
         require("./routers/user_number")(req,res,next)
     });
+    app.post("/select_information_help",(req,res,next)=>{
+        require("./routers/select_information_help")(req,res,next)
+    });
+
 
 
 
