@@ -11,11 +11,10 @@ module.exports = function(req,res,next){
             }
         })
         .then(function (data) {
-            console.log(typeof data);
-            res.send(data);
+            res.send(data.data);
         })
         .catch(function (data) {
-            res.send(data)
+            res.send(data.data)
         });
     }else {//没有接收到指定参数
         res.send({
