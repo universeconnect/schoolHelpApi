@@ -15,8 +15,8 @@ module.exports = function (app) {
     app.post("/update_status",(req,res,next)=>{
         require("./routers/update_status")(req,res,next)
     });
-    app.post("/selecInformation",(req,res,next)=>{//按条件查询Information_help和user表的联合信息
-        require("./routers/selecInformation")(req,res,next)
+    app.post("/selectInformation",(req,res,next)=>{//按条件查询Information_help和user表的联合信息
+        require("./routers/selectInformation")(req,res,next)
     });
     app.post("/select_userid",(req,res,next)=>{
         require("./routers/select_userid")(req,res,next)
@@ -32,6 +32,9 @@ module.exports = function (app) {
     });
     app.post("/attention",(req,res,next)=>{//关注
         require("./routers/attention")(req,res,next)
+    });
+    app.post("/area",(req,res,next)=>{//获取指定type按town分组的所有需求数量和一个地址
+        require("./routers/area")(req,res,next)
     });
 
 
