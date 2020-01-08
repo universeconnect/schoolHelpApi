@@ -15,23 +15,23 @@ module.exports = function (app) {
     app.post("/update_status",(req,res,next)=>{
         require("./routers/update_status")(req,res,next)
     });
-    app.post("/selecInformation",(req,res,next)=>{
+    app.post("/selecInformation",(req,res,next)=>{//按条件查询Information_help和user表的联合信息
         require("./routers/selecInformation")(req,res,next)
-    });
-    app.post("/selecInformationByInformation_id",(req,res,next)=>{
-        require("./routers/selecInformationByInformation_id")(req,res,next)
     });
     app.post("/select_userid",(req,res,next)=>{
         require("./routers/select_userid")(req,res,next)
     });
-    app.post("/selectFans",(req,res,next)=>{
+    app.post("/selectFans",(req,res,next)=>{//所有粉丝信息
         require("./routers/selectFans")(req,res,next)
     });
-    app.post("/selectFansSum",(req,res,next)=>{
+    app.post("/selectFansSum",(req,res,next)=>{//统计粉丝数量
         require("./routers/selectFansSum")(req,res,next)
     });
     app.post("/cancel_Focus",(req,res,next)=>{
         require("./routers/cancel_Focus")(req,res,next)
+    });
+    app.post("/attention",(req,res,next)=>{//关注
+        require("./routers/attention")(req,res,next)
     });
 
 
