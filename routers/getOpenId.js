@@ -11,10 +11,16 @@ module.exports = function(req,res,next){
             }
         })
         .then(function (data) {
-            res.send(data.data);
+            res.send({
+                "status_code":805,
+                "data":data.data,
+            });
         })
         .catch(function (data) {
-            res.send(data.data)
+            res.send({
+                "status_code":905,
+                "data":data.data,
+            })
         });
     }else {//没有接收到指定参数
         res.send({
