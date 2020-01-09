@@ -39,6 +39,13 @@ module.exports = function (app) {
     app.post("/getOpenId",(req,res,next)=>{//获取openID
         require("./routers/getOpenId")(req,res,next)
     });
+    app.post("/user_number",(req,res,next)=>{
+        require("./routers/user_number")(req,res,next)
+    });
+    app.post("/select_information_help",(req,res,next)=>{
+        require("./routers/select_information_help")(req,res,next)
+    });
+
 
 
 
