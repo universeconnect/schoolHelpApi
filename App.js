@@ -3,7 +3,6 @@ const app = express();
 let bodyParser = require('body-parser');//引入用于获取post参数的模块
 let il = require("./lib/insertLog");
 
-global.connection = require('./lib/database');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use((req,res,next)=>{
